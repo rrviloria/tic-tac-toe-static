@@ -1,0 +1,36 @@
+.page {
+  margin-top: 10vh;
+  margin-left: 5vh;
+}
+
+#board {
+  /*max-width: 30%;*/
+}
+
+.board-cell {
+  font-weight: bolder;
+  font-size: 5vh;
+  padding: 10% 0;
+  background-color: #e9ecef;
+  border: 1px solid #696969;
+  min-height: 20vh;
+  max-height: 20vh;
+  text-align: center;
+}
+
+.select-player-card {
+  width: 100%;
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: righ;
+}
+
+.center {
+  text-align: center;
+}

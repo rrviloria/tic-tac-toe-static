@@ -1,26 +1,48 @@
-import React from 'react';
+import React, { Component, useState } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
+import Board from './components/Board.jsx';
+import SelectPlayer from './components/SelectPlayer.jsx';
+import { Container, Row, Col } from 'react-bootstrap';
 
-function App() {
+
+const TicTacToe = () => {
+  const [page, setPage] = useState('select-player');
+  const [playerX, setPlayerX] = useState({'id': null, 'name': 'Select player X'});
+  const [playerO, setPlayerO] = useState({'id': null, 'name': 'Select player O'});
+  const [users, setUsers] = useState([]);
+  const [board, setBoard] = useState([
+    [' ', ' ', ' '],
+    [' ', ' ', ' '],
+    [' ', ' ', ' ']
+  ]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='page'>
+      {
+        page === 'game' &&
+        <Board 
+          board={board}
+          setBoard={setBoard}/>
+        
+      }
+      
+      {
+        page === 'select-player' && 
+        <SelectPlayer
+          users={users}
+          setUsers={setUsers}
+
+          playerX={playerX}
+          setPlayerX={setPlayerX}
+          playerO={playerO}
+          setPlayerO={setPlayerO}
+          setPage={setPage}
+        />
+      }
+
     </div>
   );
 }
 
-export default App;
+export default TicTacToe;
