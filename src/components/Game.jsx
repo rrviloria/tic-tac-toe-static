@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { SIZE } from '../constants/index.js';
-import Board from './Board.jsx';
+import GameBoard from './GameBoard.jsx';
 import GameInfo from './GameInfo.jsx';
 import PopupModal from './PopupModal.jsx';
 import TicTacToeWinnerChecker from '../utils/checker.js';
 import { generateBoard } from '../utils/index.js';
 
 
-const Game = ({ playerX, playerO, setPlayerO, setPlayerX, setPage }) => {
+const Game = ({ playerX, playerO, setPlayerO, setPlayerX, setPage, round, setRound }) => {
   const [currentPlayer, setCurrentPlayer] = useState(playerX);
   const [modal, setModal] = useState({title: 'Winner!', body: ''});
   const [showWinner, setShowWinner] = useState(false);
   const [winner, setWinner] = useState(null);
-  const [round, setRound] = useState(1);
   const [board, setBoard] = useState(generateBoard(SIZE));
   const checker = new TicTacToeWinnerChecker(SIZE);
 
@@ -78,15 +77,6 @@ const Game = ({ playerX, playerO, setPlayerO, setPlayerX, setPage }) => {
 
       <Row style={{'margin-bottom': '1.5rem'}}>
         <Col xs={3} className={'center'}></Col>
-        <Col xs={6} className={'left'}>
-          <Button 
-            variant="primary"
-            onClick={() => {setPage('select-player')}}>New game</Button>
-        </Col>
-      </Row>
-
-      <Row style={{'margin-bottom': '1.5rem'}}>
-        <Col xs={3} className={'center'}></Col>
         <Col xs={6} className={'center'}>
           <GameInfo 
             playerX={playerX}
@@ -110,7 +100,7 @@ const Game = ({ playerX, playerO, setPlayerO, setPlayerX, setPage }) => {
       <Row>
         <Col xs={3} className={'right player-name'}></Col>
         <Col xs={6}>
-          <Board 
+          <GameBoard 
             board={board}
             setBoard={setBoard}
             currentPlayer={currentPlayer}

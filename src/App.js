@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './css/App.css';
 import GamePage from './pages/GamePage.jsx';
-import SelectPlayer from './components/SelectPlayer.jsx';
+import HomePage from './pages/HomePage.jsx';
 
 
 const TicTacToe = () => {
@@ -14,7 +14,7 @@ const TicTacToe = () => {
     <div className='page'>
       {
         page === 'select-player' && 
-        <SelectPlayer
+        <HomePage
           users={users}
           setUsers={setUsers}
 
