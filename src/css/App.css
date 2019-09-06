@@ -4,18 +4,33 @@
 }
 
 #board {
-  /*max-width: 30%;*/
+  max-width: 100%;
+}
+
+.circl {
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 60%;
 }
 
 .board-cell {
-  font-weight: bolder;
-  font-size: 5vh;
-  padding: 10% 0;
-  background-color: #e9ecef;
-  border: 1px solid #696969;
-  min-height: 20vh;
-  max-height: 20vh;
+  font-weight: 400;
+  font-size: 4rem;
+  background-color: #fff;
+  min-height: 7rem;
+  max-height: 7rem;
   text-align: center;
+
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
 }
 
 .select-player-card {
@@ -33,4 +48,9 @@
 
 .center {
   text-align: center;
+}
+
+.player-name {
+  font-weight: 500;
+  font-size: 1.25rem;
 }

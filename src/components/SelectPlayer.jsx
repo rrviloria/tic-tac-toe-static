@@ -8,28 +8,47 @@ import CreateUser from './CreateUser.jsx';
 const SelectPlayer = ({ users, setUsers, playerX, setPlayerX, playerO, setPlayerO, setPage }) => {
   const [userLoaded, setUserLoaded] = useState(false);
 
+  const setPlayer = (user, fn, value) => {
+    user.value = value;
+    user.score = 0;
+    fn(user);
+  };
+
   useEffect(() => {
+    if(userLoaded === false) {
       const asyncFn = async() => {
         setUsers(await getUsers());
         setUserLoaded(true);
       };
 
       asyncFn();
+    }
   }, [userLoaded]);
 
 	return (
 	  <Container> 
-      <CreateUser setUserLoaded={setUserLoaded}/>
+      <Row style={{'margin-bottom': '1rem'}}>
+        <Col xs={5} className={'left'}>
+          <CreateUser setUserLoaded={setUserLoaded}/>
+        </Col>
+        <Col xs={7} className={'right'}>
+          <Button disabled={
+              playerX.id === null || playerO.id === null
+            }
+            variant="primary"
+            onClick={() => {setPage('game')}}>Start game</Button>
+        </Col>
+      </Row>
       <Row>
         <Col xs={5} className={'center'}>
           <Card className={'select-player-card'}>
             <Card.Body>
               <Card.Title>{playerX.name}</Card.Title>
               <Card.Text>
-                <DropdownButton id="dropdown-item-button" title={playerX.name}>
+                <DropdownButton variant={'light'} id="dropdown-item-button" title={playerX.name}>
                   {
                     users.map((user) => (
-                      <Dropdown.Item as="button" onClick={() => {setPlayerX(user)}}>{user.name}</Dropdown.Item>
+                      <Dropdown.Item as="button" onClick={() => {setPlayer(user, setPlayerX, 'x')}}>{user.name}</Dropdown.Item>
                     ))
                   }
                 </DropdownButton>
@@ -45,26 +64,16 @@ const SelectPlayer = ({ users, setUsers, playerX, setPlayerX, playerO, setPlayer
             <Card.Body>
               <Card.Title>{playerO.name}</Card.Title>
               <Card.Text>
-                <DropdownButton id="dropdown-item-button" title={playerO.name}>
+                <DropdownButton variant={'light'} id="dropdown-item-button" title={playerO.name}>
                   {
                     users.map((user) => (
-                      <Dropdown.Item as="button" onClick={() => {setPlayerO(user)}}>{user.name}</Dropdown.Item>
+                      <Dropdown.Item as="button" onClick={() => {setPlayer(user, setPlayerO, 'o')}}>{user.name}</Dropdown.Item>
                     ))
                   }
                 </DropdownButton>
               </Card.Text>
             </Card.Body> 
           </Card>
-        </Col>
-      </Row>
-
-      <Row style={{'margin-top': '2vh', 'text-align': 'center'}}>
-        <Col xs={12}>
-          <Button disabled={
-              playerX.id === null || playerO.id === null
-            }
-            variant="primary"
-            onClick={() => {setPage('game')}}>Start Game</Button>
         </Col>
       </Row>
     </Container>

@@ -1,9 +1,7 @@
-import React, { Component, useState } from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './css/App.css';
-import Board from './components/Board.jsx';
+import GamePage from './pages/GamePage.jsx';
 import SelectPlayer from './components/SelectPlayer.jsx';
-import { Container, Row, Col } from 'react-bootstrap';
 
 
 const TicTacToe = () => {
@@ -11,22 +9,9 @@ const TicTacToe = () => {
   const [playerX, setPlayerX] = useState({'id': null, 'name': 'Select player X'});
   const [playerO, setPlayerO] = useState({'id': null, 'name': 'Select player O'});
   const [users, setUsers] = useState([]);
-  const [board, setBoard] = useState([
-    [' ', ' ', ' '],
-    [' ', ' ', ' '],
-    [' ', ' ', ' ']
-  ]);
 
   return (
     <div className='page'>
-      {
-        page === 'game' &&
-        <Board 
-          board={board}
-          setBoard={setBoard}/>
-        
-      }
-      
       {
         page === 'select-player' && 
         <SelectPlayer
@@ -39,6 +24,16 @@ const TicTacToe = () => {
           setPlayerO={setPlayerO}
           setPage={setPage}
         />
+      }
+
+      {
+        page === 'game' && 
+        <GamePage 
+          playerX={playerX}
+          playerO={playerO}
+          setPlayerX={setPlayerX}
+          setPlayerO={setPlayerO}
+          setPage={setPage}/>
       }
 
     </div>

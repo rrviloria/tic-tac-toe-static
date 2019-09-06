@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import { SIZE } from '../constants/index.js';
 
 
-const Board = ({ board, setBoard }) => {
-  const [currentPlayer, setCurrentPlayer] = useState(null);
+const Board = ({ board, setBoard, currentPlayer, toggleCurrentPlayer, hasWinner }) => {
+  const sizePerCell = 12 / SIZE;
 
   const cellClick = (i, j) => {
     let newBoard = [...board];
-    newBoard[i][j] = 'X';
+    newBoard[i][j] = currentPlayer.value;
     setBoard(newBoard);
+
+    toggleCurrentPlayer();
+    hasWinner(newBoard)
   };
 
 	return (
-    <Container>
+    <Container id='board'>
     {
   	  board && board.map(
           (item, i) => (
@@ -21,7 +25,7 @@ const Board = ({ board, setBoard }) => {
                 item.map((value, j) => (
                   <Col
                     onClick={() => { cellClick(i, j) }}
-                    xs={4} className='board-cell'>
+                    xs={sizePerCell} className='board-cell'>
                       {value}
                     </Col>
                 ))
