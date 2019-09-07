@@ -5,15 +5,16 @@ import HomePage from './pages/HomePage.jsx';
 
 
 const TicTacToe = () => {
-  const [page, setPage] = useState('select-player');
+  const [page, setPage] = useState('home');
   const [playerX, setPlayerX] = useState({'id': null, 'name': 'Select player X'});
   const [playerO, setPlayerO] = useState({'id': null, 'name': 'Select player O'});
   const [users, setUsers] = useState([]);
+  const [game, setGame] = useState(null);
 
   return (
     <div className='page'>
       {
-        page === 'select-player' && 
+        page === 'home' && 
         <HomePage
           users={users}
           setUsers={setUsers}
@@ -23,17 +24,19 @@ const TicTacToe = () => {
           playerO={playerO}
           setPlayerO={setPlayerO}
           setPage={setPage}
+          setGame={setGame}
         />
       }
 
       {
-        page === 'game' && 
+        page === 'game' && game &&
         <GamePage 
           playerX={playerX}
           playerO={playerO}
           setPlayerX={setPlayerX}
           setPlayerO={setPlayerO}
-          setPage={setPage}/>
+          setPage={setPage}
+          game={game}/>
       }
 
     </div>

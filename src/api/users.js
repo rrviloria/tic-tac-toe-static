@@ -1,13 +1,28 @@
+import axios from 'axios';
+import { API_HOST } from '../constants/index.js';
 
-const mockUsers = [
-  {id: 1, name: 'Raymund'},
-  {id: 2, name: 'Jelly'},
-];
+// mock users
+// const mockUsers = [
+//   {id: 1, name: 'Raymund'},
+//   {id: 2, name: 'Jelly'},
+// ];
 
 export const getUsers = async() => {
-	return mockUsers;
+	const request = axios.get(
+	   `${API_HOST}players/`, {
+			headers: { 'Content-Type': 'application/json'
+		},
+	});
+	const { data } = await request;
+	return data;
 };
 
-export const createUser = async(name) => {
-	mockUsers.push({id: 3, name: name});
+export const createUser = async(query) => {
+	const request = axios.post(
+	 	`${API_HOST}players/`, JSON.stringify(query), {
+			headers: { 'Content-Type': 'application/json'
+		},
+	});
+	const { data } = await request;
+	return data;
 };

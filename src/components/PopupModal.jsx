@@ -10,8 +10,8 @@ const PopupModal = ({ title, body, show, setShow, callBack }) => {
   };
 
 	return (
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
+    <Modal show={show}>
+      <Modal.Header>
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
 

@@ -7,12 +7,14 @@ const Board = ({ board, setBoard, currentPlayer, toggleCurrentPlayer, hasWinner 
   const sizePerCell = 12 / SIZE;
 
   const cellClick = (i, j) => {
-    let newBoard = [...board];
-    newBoard[i][j] = currentPlayer.value;
-    setBoard(newBoard);
+    if(board[i][j] === null) {
+      let newBoard = [...board];
+      newBoard[i][j] = currentPlayer.value;
+      setBoard(newBoard);
 
-    toggleCurrentPlayer();
-    hasWinner(newBoard)
+      toggleCurrentPlayer();
+      hasWinner(newBoard);
+    }
   };
 
 	return (

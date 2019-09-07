@@ -8,15 +8,15 @@ const GameInfo = ({ round, playerX, playerO }) => {
       <Card.Body>
         <Row>
           <Col xs={5}>
-            <Card.Title style={{'font-weight': 'bolder'}}>({playerX.value}) {playerX.name}</Card.Title>
+            <Card.Title style={{fontWeight: 'bolder'}}>({playerX.value}) {playerX.name}</Card.Title>
             <Card.Title>{playerX.score}</Card.Title>
           </Col>
           <Col xs={2}>
-            <Card.Title style={{'font-weight': 'bolder'}}>Round</Card.Title>
+            <Card.Title style={{fontWeight: 'bolder'}}>Round</Card.Title>
             <Card.Title>{round}</Card.Title>
           </Col>
           <Col xs={5}>
-            <Card.Title style={{'font-weight': 'bolder'}}>({playerO.value}) {playerO.name}</Card.Title>
+            <Card.Title style={{fontWeight: 'bolder'}}>({playerO.value}) {playerO.name}</Card.Title>
             <Card.Title>{playerO.score}</Card.Title>
           </Col>
         </Row>

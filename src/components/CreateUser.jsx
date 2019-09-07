@@ -8,7 +8,7 @@ const CreateUser = ({ setUserLoaded }) => {
   const [newUserName, setNewUserName] = useState(null);
 
   const createNewUser = async() => {
-    await createUser(newUserName);
+    await createUser({name: newUserName});
     setEnableUserCreate(false);
     setUserLoaded(false);
   };

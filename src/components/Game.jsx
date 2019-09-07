@@ -8,12 +8,18 @@ import TicTacToeWinnerChecker from '../utils/checker.js';
 import { generateBoard } from '../utils/index.js';
 
 
-const Game = ({ playerX, playerO, setPlayerO, setPlayerX, setPage, round, setRound }) => {
+const Game = ({
+    playerX, playerO,
+    setPlayerO, setPlayerX,
+    setPage, round, setRound,
+    game, updateCurrentGame,
+    board, setBoard, saveRound
+  }) => {
+
   const [currentPlayer, setCurrentPlayer] = useState(playerX);
   const [modal, setModal] = useState({title: 'Winner!', body: ''});
-  const [showWinner, setShowWinner] = useState(false);
   const [winner, setWinner] = useState(null);
-  const [board, setBoard] = useState(generateBoard(SIZE));
+  const [showWinner, setShowWinner] = useState(false);
   const checker = new TicTacToeWinnerChecker(SIZE);
 
   const toggleCurrentPlayer = () => {
@@ -56,6 +62,9 @@ const Game = ({ playerX, playerO, setPlayerO, setPlayerX, setPage, round, setRou
       modal['body'] = 'Player ' + winner.name + ' wins!';
       setModal({...modal});
       setShowWinner(true);
+      updateCurrentGame().then(() => {
+        saveRound(winner, board);
+      });
     }
     setRound(round + 1);
   };
@@ -75,7 +84,7 @@ const Game = ({ playerX, playerO, setPlayerO, setPlayerX, setPage, round, setRou
         setShow={setShowWinner}
         callBack={resetGame}/>
 
-      <Row style={{'margin-bottom': '1.5rem'}}>
+      <Row style={{marginBottom: '1.5rem'}}>
         <Col xs={3} className={'center'}></Col>
         <Col xs={6} className={'center'}>
           <GameInfo 
@@ -85,12 +94,12 @@ const Game = ({ playerX, playerO, setPlayerO, setPlayerX, setPage, round, setRou
         </Col>
         <Col xs={3} className={'center'}></Col>
       </Row>
-      <Row style={{'margin-bottom': '1.5rem'}}>
+      <Row style={{marginBottom: '1.5rem'}}>
         <Col xs={12} className={'center player-name'}>
           {
             winner === null && (
               <span>
-                <span style={{'font-weight': 'bolder'}}>{currentPlayer.name}({currentPlayer.value})&apos;s</span><span> turn</span>
+                <span style={{fontWeight: 'bolder'}}>{currentPlayer.name}({currentPlayer.value})&apos;s</span><span> turn</span>
               </span>
             )
           }
