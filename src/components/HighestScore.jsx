@@ -14,7 +14,7 @@ const HighestScore = ({ limit }) => {
         const data = await getGames({
           ordering: '-highest_score',
           highest_score__isnull: 'False',
-          winner__isnull: 'False',
+          // winner__isnull: 'False', // show draw
           limit: limit
         });
         setHighScores(data.results);
@@ -41,7 +41,7 @@ const HighestScore = ({ limit }) => {
             <tr>
               <td><Moment format="MM-DD-YYYY HH:mm">{item.created_at}</Moment></td>
               <td>{item.player_x_name} vs {item.player_o_name}</td>
-              <td>{item.winner_name}</td>
+              <td>{(item.winner !== null ? item.winner_name : 'No winner')}</td>
               <td>{item.highest_score}</td>
             </tr>
           ))
