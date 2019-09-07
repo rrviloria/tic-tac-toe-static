@@ -23,5 +23,5 @@ npm install
 ```
 yarn install
 ```
-4) Start application `npm start`
-5) Visit `http://localhost:3000`
+3) Start application `npm start`
+4) Visit `http://localhost:3000`
