@@ -11,17 +11,7 @@ This was initially created using:
 * npm version 6.4.1
 
 ## Setup environment
-1) Clone this repo
-```
-https://github.com/rrviloria/tic-tac-toe-static.git
-```
-2) Install dependencies. Run command
-```
-npm install
-```
-  **or**
-```
-yarn install
-```
+1) Clone this repository https://github.com/rrviloria/tic-tac-toe-static.git
+2) Install dependencies. Run command `npm install` or `yarn install`
 3) Start application `npm start`
 4) Visit `http://localhost:3000`
