@@ -19,8 +19,9 @@ https://github.com/rrviloria/tic-tac-toe-static.git
 ```
 npm install
 ```
-**or**
+  **or**
 ```
 yarn install
 ```
-4) Visit `http://localhost:3000`
+4) Start application `npm start`
+5) Visit `http://localhost:3000`
